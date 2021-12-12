@@ -34,7 +34,8 @@ namespace PastryShopAPI.Repositories
             var ingredientsToDelete = _context.Ingredient.Where(x =>
              x.ProductID == productToDelete.Id).FirstOrDefault();
             _context.Products.Remove(productToDelete);
-            _context.Ingredient.Remove(ingredientsToDelete);
+            if(ingredientsToDelete != null)
+               _context.Ingredient.Remove(ingredientsToDelete);
             await _context.SaveChangesAsync();
         }
 
